@@ -1,5 +1,4 @@
 import os
-
 from utils import get_lines
 from typing import TypedDict, List, Literal
 
