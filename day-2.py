@@ -1,4 +1,3 @@
-import os
 from utils import get_lines
 from typing import TypedDict, List, Literal
 
@@ -28,7 +27,7 @@ def part_one():
     red_limit = 12
     green_limit = 13
     blue_limit = 14
-    for line in get_lines(os.path.basename(__file__)):
+    for line in get_lines(__file__):
         line = line.replace(';', ',')
         cubes = get_cubes(line)
 
@@ -58,7 +57,7 @@ def part_one():
 
 def part_two():
     game_powers_sum = 0
-    for line in get_lines(os.path.basename(__file__)):
+    for line in get_lines(__file__):
         line = line.replace(';', ',')
         cubes = get_cubes(line)
 

@@ -1,4 +1,3 @@
-import os
 from utils import get_lines, clear_log, log
 
 
@@ -11,7 +10,7 @@ def digit_match(a: str, b: str) -> int:
 
 def part_one():
     nums_sum = 0
-    for line in get_lines(os.path.basename(__file__)):
+    for line in get_lines(__file__):
         nums_list = list(filter(lambda char: char.isdigit(), line))
         nums_sum += int(''.join([nums_list[0], nums_list[len(nums_list) - 1]]))
     print(f'nums_sum: {nums_sum}')
@@ -45,7 +44,7 @@ def part_two():
     clear_log()
 
     nums_sum = 0
-    for line in get_lines(os.path.basename(__file__)):
+    for line in get_lines(__file__):
         log(f"{'line'.ljust(10)}: {line}")
 
         num_str = ''.join(get_first_and_last_digit(line))

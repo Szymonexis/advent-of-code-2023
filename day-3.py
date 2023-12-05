@@ -1,5 +1,4 @@
 from typing import List
-import os
 from utils import get_lines
 
 
@@ -16,7 +15,7 @@ def is_star(s: str) -> bool:
 
 def get_schematic() -> Schematic:
     schematic: Schematic = []
-    for line in get_lines(os.path.basename(__file__)):
+    for line in get_lines(__file__):
         line = line.strip()
         schematic.append(list(line))
     return schematic
