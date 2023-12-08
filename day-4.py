@@ -1,5 +1,5 @@
 from typing import TypedDict, List
-from utils import get_lines
+from utils import get_lines, profiler
 
 
 class Scratchcard(TypedDict):
@@ -29,6 +29,7 @@ def get_points(winning_nums: list[int], my_nums: list[int]) -> int:
     return points
 
 
+@profiler
 def part_one():
     points_sum = 0
     for scratchcard in get_scratchcards():
@@ -64,6 +65,7 @@ def get_matches(winning_nums: list[int], my_nums: list[int]) -> int:
     return matches
 
 
+@profiler
 def part_two():
     scratchcards = get_scratchcards()
     scratchcard_amounts: ScratchcardAmounts = list(

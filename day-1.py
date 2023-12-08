@@ -1,4 +1,4 @@
-from utils import get_lines, clear_log, log
+from utils import get_lines, clear_log, log, profiler
 
 
 def digit_match(a: str, b: str) -> int:
@@ -7,7 +7,7 @@ def digit_match(a: str, b: str) -> int:
             return 0
     return 1 + len(a) // len(b)
 
-
+@profiler
 def part_one():
     nums_sum = 0
     for line in get_lines(__file__):
@@ -39,7 +39,7 @@ def get_first_and_last_digit(line: str) -> list[str]:
 
     return [found_digits[0][0], found_digits[len(found_digits) - 1][0]]
 
-
+@profiler
 def part_two():
     clear_log()
 
@@ -54,5 +54,5 @@ def part_two():
     print(f'nums_sum: {nums_sum}')
 
 
-# part_one()
+part_one()
 part_two()

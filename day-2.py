@@ -1,4 +1,4 @@
-from utils import get_lines
+from utils import get_lines, profiler
 from typing import TypedDict, List, Literal
 
 
@@ -21,7 +21,7 @@ def get_cubes(line: str) -> List[Cube]:
     cubes_str = list(map(lambda s: s.strip(), line.split(',')))
     return list(map(map_str_to_cube, cubes_str))
 
-
+@profiler
 def part_one():
     game_ids_sum = 0
     red_limit = 12
@@ -55,6 +55,7 @@ def part_one():
     print(f'game_ids_sum: {game_ids_sum}')
 
 
+@profiler
 def part_two():
     game_powers_sum = 0
     for line in get_lines(__file__):
