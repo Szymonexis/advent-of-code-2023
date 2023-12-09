@@ -24,14 +24,14 @@ def log(s: str = ''):
     print(s, file=open('log.txt', 'a'))
 
 
-def log_table(logs: list[dict], min_column_width=3, position: Literal['left', 'center', 'right'] = 'center', lpadding=1, rpadding=1):
+def log_table(logs: list[dict], keys: list[str] = None, min_column_width=3, position: Literal['left', 'center', 'right'] = 'center', lpadding=1, rpadding=1):
     def apply_padding(s): return s.ljust(
         max_lengths[i] + lpadding).rjust(max_lengths[i] + lpadding + rpadding)
 
     if len(logs) == 0:
         return
 
-    keys = list(logs[0].keys())
+    keys = list(logs[0].keys()) if keys == None else keys
     value_rows = []
     for l in logs:
         value_row = []
