@@ -41,8 +41,6 @@ def get_first_and_last_digit(line: str) -> list[str]:
     return [found_digits[0][0], found_digits[len(found_digits) - 1][0]]
 
 # TODO: not optimal
-
-
 @profiler
 def part_two():
     clear_log()
