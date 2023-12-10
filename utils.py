@@ -96,7 +96,7 @@ def profiler(method):
         frame = inspect.currentframe()
         caller_frame = frame.f_back
         file_name = os.path.basename(caller_frame.f_code.co_filename)
-        m = f'Method {file_name}->{method.__qualname__} took : {(perf_counter() - t) * 1000} ms'
+        m = f'Method {file_name}->{method.__qualname__} took: {(perf_counter() - t) * 1000} ms'
         print(m)
         return ret
     return wrapper_method

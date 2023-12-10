@@ -7,6 +7,7 @@ def digit_match(a: str, b: str) -> int:
             return 0
     return 1 + len(a) // len(b)
 
+
 @profiler
 def part_one():
     nums_sum = 0
@@ -38,6 +39,9 @@ def get_first_and_last_digit(line: str) -> list[str]:
     found_digits = sorted(found_digits, key=lambda x: x[1])
 
     return [found_digits[0][0], found_digits[len(found_digits) - 1][0]]
+
+# TODO: not optimal
+
 
 @profiler
 def part_two():

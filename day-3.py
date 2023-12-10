@@ -66,6 +66,7 @@ def get_adjecent_numbers(schematic: Schematic, x: int, y: int) -> list[int]:
 
     return list(map(lambda t: int(''.join(schematic[t[0]][t[1]:t[2]])), set(found_numbers_indexes)))
 
+
 @profiler
 def part_one():
     schematic = get_schematic()
@@ -77,6 +78,7 @@ def part_one():
                 parts_sum += sum(get_adjecent_numbers(schematic, x, y))
 
     print(f'parts_sum: {parts_sum}')
+
 
 @profiler
 def part_two():

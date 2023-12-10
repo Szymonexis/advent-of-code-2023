@@ -21,6 +21,7 @@ def get_cubes(line: str) -> List[Cube]:
     cubes_str = list(map(lambda s: s.strip(), line.split(',')))
     return list(map(map_str_to_cube, cubes_str))
 
+
 @profiler
 def part_one():
     game_ids_sum = 0
