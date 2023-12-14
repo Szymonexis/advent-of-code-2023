@@ -1,4 +1,3 @@
-from typing import Dict, List, Set, Tuple
 from functools import reduce
 from pprint import pprint
 from utils import get_lines, profiler
@@ -51,6 +50,7 @@ def check_if_all_targets_met(targets: list[str]) -> bool:
     return reduce(lambda acc, s: (acc and s[2] == 'Z'), targets, True)
 
 
+# Let’s try to find all 6 (the number of entry points steps) and LCM
 @profiler
 def part_two():
     lines = get_lines(__file__)
@@ -60,10 +60,6 @@ def part_two():
 
     i = 0
     steps = 0
-    while not check_if_all_targets_met(start_nodes):
-        start_nodes = [graph[start_node][instructions[i]] for start_node in start_nodes]
-        i = (i + 1) % len(instructions)
-        steps += 1
 
     print(f'steps: {steps}')
 
