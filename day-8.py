@@ -50,7 +50,7 @@ def check_if_all_targets_met(targets: list[str]) -> bool:
     return reduce(lambda acc, s: (acc and s[2] == 'Z'), targets, True)
 
 
-# Let’s try to find all 6 (the number of entry points steps) and LCM
+# @TODO: Try to find all starting points and LCM ()
 @profiler
 def part_two():
     lines = get_lines(__file__)
