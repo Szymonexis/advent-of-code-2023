@@ -35,6 +35,7 @@ def get_start_i_j(pipes: list[list[tuple[int, int, int, int]]]) -> (int, int):
         i += 1
     return (i, j)
 
+
 # TODO: wtf???
 def create_graph(start_index: tuple[int, int], pipes: list[list[tuple[int, int, int, int]]]) -> dict[str, str]:
     graph: dict[str, str] = {}
