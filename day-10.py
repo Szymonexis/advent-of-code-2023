@@ -1,3 +1,4 @@
+from pprint import pprint
 from utils import profiler, get_lines
 import sys
 
@@ -16,12 +17,16 @@ OPPOSITES: dict[str, str] = {
     'e': 'w',
 }
 
-GRAPH_NON_PATH = 0
+GRAPH_NON_PATH = -2
 GRAPH_PATH = 1
-GRAPH_ENCLOSED = 8
+GRAPH_ENCLOSED = -1
 
 
 Graph = list[list[int]]
+
+
+def graph_path(v: int = GRAPH_PATH) -> int:
+    return v
 
 
 def line_to_directions(line: str) -> list[str]:
@@ -66,7 +71,7 @@ def get_graph_and_max_length() -> tuple[Graph, int]:
     start = (i, j)
     prev_direction = ''
     counter = 0
-    graph[i][j] = GRAPH_PATH
+    graph[i][j] = graph_path(counter)
     while (i, j) != start or prev_direction == '':
         if prev_direction == '':
             next_direction = ''
@@ -77,11 +82,11 @@ def get_graph_and_max_length() -> tuple[Graph, int]:
                     prev_direction = opposites[c]
                     i += offset[0]
                     j += offset[1]
-                    graph[i][j] = GRAPH_PATH
+                    graph[i][j] = graph_path(counter)
                     counter += 1
                     break
         else:
-            graph[i][j] = GRAPH_PATH
+            graph[i][j] = graph_path(counter)
             counter += 1
             prev_direction = next_direction.replace(
                 opposites[prev_direction], '')
@@ -137,12 +142,51 @@ def count_enclosed(graph: Graph) -> int:
     return counter
 
 
+def double_resolution(graph: Graph) -> Graph:
+    doubled_res_graph = [[GRAPH_NON_PATH for _ in range(
+        len(graph[0]) * 2)] for _ in range(len(graph) * 2)]
+    i = 0
+    j = 0
+    while i < len(graph):
+        j = 0
+        while j < len(graph[0]):
+            v = graph[i][j]
+            d_i = i * 2
+            d_j = j * 2
+            doubled_res_graph[d_i][d_j] = v
+            j += 1
+        i += 1
+    return doubled_res_graph
+
+
+def half_resolution(graph: Graph) -> Graph:
+    half_res_graph = [[GRAPH_NON_PATH for _ in range(
+        len(graph[0]) // 2)] for _ in range(len(graph) // 2)]
+
+    i = 0
+    j = 0
+    while i < len(graph):
+        j = 0
+        while j < len(graph[0]):
+            half_res_graph[i // 2][j // 2] = graph[i][j]
+            j += 2
+        i += 2
+    return half_res_graph
+
+
 # TODO: very cool, doesnt work
+# https://www.reddit.com/r/adventofcode/comments/18fgddy/2023_day_10_part_2_using_a_rendering_algorithm_to/
 @profiler
 def part_two():
     (graph, _) = get_graph_and_max_length()
-    tiles_num = count_enclosed(mark_enclosed_areas(graph))
-    print(f'tiles_num: {tiles_num}')
+    double_res_graph = double_resolution(graph)
+    # marked_enclosed = mark_enclosed_areas(double_res_graph)
+    # marked_enclosed_graph = half_resolution(marked_enclosed)
+    # tiles_num = count_enclosed(marked_enclosed_graph)
+    # print(f'tiles_num: {tiles_num}')
+
+    pprint(graph)
+    pprint(double_res_graph)
 
 
 part_one()
