@@ -140,7 +140,6 @@ def count_enclosed(graph: Graph) -> int:
 # TODO: very cool, doesnt work
 @profiler
 def part_two():
-    sys.setrecursionlimit(3000)
     (graph, _) = get_graph_and_max_length()
     tiles_num = count_enclosed(mark_enclosed_areas(graph))
     print(f'tiles_num: {tiles_num}')
